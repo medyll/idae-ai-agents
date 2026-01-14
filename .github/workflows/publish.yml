@@ -30,13 +30,14 @@ jobs:
       - name: Install changesets
         run: pnpm add -D @changesets/cli
 
-      - name: Version and Publish with Changesets
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm changeset publish
+          version: pnpm changeset version
+          title: "chore: release packages"
+          commit: "chore: release packages"
         env:
-          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_2026 }} # token name for npm is NODE_AUTH_TOKEN
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          pnpm changeset version
-          pnpm changeset publish
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN_2026 }}
