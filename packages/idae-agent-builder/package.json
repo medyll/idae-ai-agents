@@ -4,5 +4,6 @@
   "main": "index.js",
   "type": "module",
   "license": "ISC",
+  "author": "Lebrun Meddy",
   "description": ""
 }

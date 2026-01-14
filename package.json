@@ -13,7 +13,7 @@
     "create-package": "node scripts/create-package.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lebrun Meddy",
   "license": "ISC",
   "packageManager": "pnpm@10.28.0",
   "devDependencies": {

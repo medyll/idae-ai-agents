@@ -1,59 +1,54 @@
 # idae-ai-agents Monorepo
 
-This monorepo hosts installable AI agent packages, distributed via npm and runnable with `npx`.
+This monorepo contains installable, documented AI agent packages with full GitHub integration and automated CI/CD.
 
 ## Overview
 
-- **Installable via npx**: All packages are designed for quick use with `npx`.
-- **GitHub integration**: Automated workflows for issues, PRs, CI/CD, and documentation.
-- **Centralized documentation**: Major actions are documented in markdown files.
-- **Automated CI/CD**: Publishing and deployment via GitHub Actions.
+- **Modular AI agents**: Each agent is published as an npm package under `packages/`.
+- **GitHub integration**: Automated workflows for issues, pull requests, CI/CD, and documentation updates.
+- **Documentation-driven**: All major actions and features are documented in markdown files.
+- **Automated CI/CD**: Publishing and deployment are managed via GitHub Actions.
 
 ## Getting Started
 
 ### Install dependencies
+
 ```sh
 pnpm install
 ```
 
+### Create a new package
 
-### Generate or update agents
-```sh
-npx @medyll/idae-agent-full
-```
-
-### Run an agent
-```sh
-npx @medyll/idae-agent-full
-```
-
-## Créer un nouveau package
-
-Pour générer un nouveau package dans le monorepo (structure complète, dossier src, etc.) :
+To generate a new package in the monorepo (with full structure and `src/` folder):
 
 ```sh
-pnpm create-package <nom-du-package>
-# ou
-npm run create-package -- <nom-du-package>
+pnpm create-package <package-name>
+# or
+npm run create-package -- <package-name>
 ```
 
-Cela crée automatiquement le dossier dans `packages/` avec tous les fichiers nécessaires.
+This will automatically create the folder in `packages/` with all required files.
+
 
 ## Monorepo Structure
-- `packages/idae-agent-full/` : Main agent package (`@medyll/idae-agent-full`)
-- `scripts/` : Utility scripts (e.g., agent generation)
-- `.github/` : GitHub integration files (workflows, instructions, etc.)
 
+- `packages/idae-agent-builder/`: Main agent package (`@medyll/idae-agent-builder`)
+- `packages/idae-agent-full/`: Full agent implementation
+- `packages/idae-agent-svelte/`: Svelte-based agent implementation
+- `scripts/`: Utility scripts (e.g., agent generation)
+- `.github/`: GitHub integration files (workflows, instructions, etc.)
 
 ## Conventions
-- All major actions must be documented
-- No implementation without a test plan
 
-## More info
+- All major actions must be documented in markdown files
+- No implementation is allowed without a test plan
+
+## More Information
+
 - See `packages/idae-agent-full/src/idae-agent-full.md` for agent logic
 - See `scripts/build_agent.js` for agent file generation
 - See `.github/workflows/publish.yml` for the CI/CD pipeline
 
 ---
 
-For questions or contributions, open an issue or PR!
+For questions or contributions, please open an issue or pull request.

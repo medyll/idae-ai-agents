@@ -5,27 +5,17 @@
  * Usage: node scripts/check-monorepo.js
  */
 
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { DEFAULT_CONTENT } from './lib/default-content.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PACKAGES_DIR = path.join(__dirname, '../packages');
 const REQUIRED_FILES = ['package.json', 'index.js', 'README.md'];
-const DEFAULT_CONTENT = {
-  'README.md': (pkg) => `# ${pkg}\n\nThis package is part of the idae-ai-agents monorepo.\n`,
-  'index.js': (pkg) => `// Entrypoint for package ${pkg}\n\nexport default {};\n`,
-  'package.json': (pkg) => JSON.stringify({
-    name: `@idae-ai-agents/${pkg}`,
-    version: '1.0.0',
-    main: 'index.js',
-    type: 'module',
-    license: 'ISC',
-    description: '',
-  }, null, 2) + '\n',
-};
 
 function checkPackageMask(packagePath, packageName, fix = false) {
   let ok = true;
