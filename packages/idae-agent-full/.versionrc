@@ -1,0 +1,9 @@
+{
+  "tagPrefix": "@medyll/idae-agent-full@",
+  "skip": {
+    "tag": false
+  },
+  "scripts": {
+    "postchangelog": "git add CHANGELOG.md"
+  }
+}
