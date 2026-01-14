@@ -3,6 +3,7 @@
 
 ## Project Overview
 - **Monorepo** for multi-role AI agents (PM, Architect, Dev, Tester, Doc) with full GitHub integration.
+- use only Conventional Commits.
 - Main agent logic: `packages/idae-agent-full` (see `src/idae-agent-full.md`).
 - Agents are executed via `npx idae-agent-full` or CLI, which calls `scripts/build_agent.js` to generate/copy agent files into `.github/` or update `.github/copilot-instructions.md`.
 

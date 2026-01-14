@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   release:
@@ -13,44 +12,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 10.28.0
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Ensure at least one changeset exists
-        run: |
-          if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v README)" ]; then
-            echo "No changeset found, creating one automatically."
-            pnpm changeset --empty --message "chore: auto changeset [ci skip]"
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add .changeset/*.md
-            git commit -m "chore: auto changeset [ci skip]"
-            git push
-          else
-            echo "Changeset(s) found, continuing."
-          fi
-        shell: bash
-
-      - name: Create Release Pull Request or Publish
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm changeset publish
-          version: pnpm changeset version
-          title: "chore: release packages"
-          commit: "chore: release packages"
+      - name: Release Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_2026 }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_2026 }}
+        run: npx multi-semantic-release
