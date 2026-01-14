@@ -56,7 +56,7 @@ jobs:
             for pkg in packages/*; do
                 if [ -f "$pkg/package.json" ]; then
                 cd $pkg
-                NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }} npm publish --access public
+                NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }} npm publish
                 cd -
                 fi
             done
