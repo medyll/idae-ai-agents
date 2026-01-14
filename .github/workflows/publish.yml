@@ -34,27 +34,25 @@ jobs:
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Version & Generate Changelog (per package)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           for pkg in packages/*; do
             if [ -f "$pkg/package.json" ]; then
               cd $pkg
-              npx commit-and-tag-version
-              # Optionally copy generated CHANGELOG.md to monorepo root (aggregate)
-              if [ -f "CHANGELOG.md" ]; then
-                cp CHANGELOG.md ../../CHANGELOG-$pkg.md
-              fi
+              GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} npx commit-and-tag-version
               cd -
             fi
           done
 
       - name: Publish packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           for pkg in packages/*; do
             if [ -f "$pkg/package.json" ]; then
               cd $pkg
-              npm publish --access public
+              NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }} npm publish --access public
               cd -
             fi
           done
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
