@@ -14,7 +14,7 @@
     "publish": "npm publish --access public"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lebrun Meddy",
   "license": "ISC",
   "packageManager": "pnpm@10.28.0"
 }

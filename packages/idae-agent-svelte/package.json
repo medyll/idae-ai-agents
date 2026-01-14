@@ -1,18 +1,20 @@
 {
   "name": "@medyll/idae-agent-svelte",
   "version": "1.0.0",
-  "description": "",
+  "description": "Agent AI specialized in svelte 5 projects.",
   "main": "index.js",
   "type": "module",
-  "scope": "@medyll",
   "bin": {
     "idae-agent-svelte": "index.js"
   },
+  "scope": "@medyll",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "npx commit-and-tag-version",
+    "publish": "npm publish --access public"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lebrun Meddy",
   "license": "ISC",
   "packageManager": "pnpm@10.28.0"
 }
