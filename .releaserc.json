@@ -1,6 +1,6 @@
 {
   "branches": ["main"],
-  "tagFormat": "${name}@${version}",
+  "tagFormat": "v${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
@@ -24,7 +24,7 @@
           "package.json",
           "CHANGELOG.md"
         ],
-        "message": "chore(release): ${name}@${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        "message": "chore(release): ${nextRelease.name}@${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ]
   ]
