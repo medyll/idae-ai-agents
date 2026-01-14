@@ -28,6 +28,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Ensure at least one changeset exists
+        run: |
+          if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v README)" ]; then
+            echo "No changeset found, creating one automatically."
+            pnpm changeset --empty --message "chore: auto changeset [ci skip]"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .changeset/*.md
+            git commit -m "chore: auto changeset [ci skip]"
+            git push
+          else
+            echo "Changeset(s) found, continuing."
+          fi
+        shell: bash
+
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
