@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 1.2.0 (2026-01-14)
+
+
+### Features
+
+* refactor check-monorepo script to use ESM and update messages to English ([5bfd926](https://github.com/medyll/idae-ai-agents/commit/5bfd926c36de73746338813b3be1b938aab686fb))
+
 ## [1.1.3](https://github.com/medyll/idae-ai-agents/compare/@medyll/idae-agent-full@1.1.2...@medyll/idae-agent-full@1.1.3) (2026-01-14)
 
 ## 1.1.2 (2026-01-14)
