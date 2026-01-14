@@ -39,5 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
           pnpm changeset version
           pnpm changeset publish
