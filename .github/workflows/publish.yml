@@ -37,22 +37,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for pkg in packages/*; do
+            for pkg in packages/*; do
             if [ -f "$pkg/package.json" ]; then
-              cd $pkg
-              GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} npx commit-and-tag-version
-              cd -
+                cd $pkg
+                GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} npx commit-and-tag-version
+                cd -
             fi
-          done
+            done
 
       - name: Publish packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          for pkg in packages/*; do
-            if [ -f "$pkg/package.json" ]; then
-              cd $pkg
-              NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }} npm publish --access public
-              cd -
-            fi
-          done
+            git config --global user.name 'GitHub Action'
+            git config --global user.email 'action@github.com'
+            for pkg in packages/*; do
+                if [ -f "$pkg/package.json" ]; then
+                cd $pkg
+                NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }} npm publish --access public
+                cd -
+                fi
+            done
