@@ -28,7 +28,7 @@ jobs:
         run: pnpm install
 
       - name: Install commit-and-tag-version
-        run: pnpm add -w -D commit-and-tag-version
+        run: pnpm add -D commit-and-tag-version
 
       - name: Set npm auth token
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
