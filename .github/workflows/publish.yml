@@ -37,7 +37,7 @@ jobs:
         env:
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_2026 }} # token name for npm
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_2026 }} # token name for npm is NODE_AUTH_TOKEN
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
