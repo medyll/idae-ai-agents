@@ -1,0 +1,60 @@
+name: Publish Packages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.28.0
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install commit-and-tag-version
+        run: pnpm add -w -D commit-and-tag-version
+
+      - name: Set npm auth token
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Version & Generate Changelog (per package)
+        run: |
+          for pkg in packages/*; do
+            if [ -f "$pkg/package.json" ]; then
+              cd $pkg
+              npx commit-and-tag-version
+              # Optionally copy generated CHANGELOG.md to monorepo root (aggregate)
+              if [ -f "CHANGELOG.md" ]; then
+                cp CHANGELOG.md ../../CHANGELOG-$pkg.md
+              fi
+              cd -
+            fi
+          done
+
+      - name: Publish packages
+        run: |
+          for pkg in packages/*; do
+            if [ -f "$pkg/package.json" ]; then
+              cd $pkg
+              npm publish --access public
+              cd -
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

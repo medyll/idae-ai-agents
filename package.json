@@ -5,10 +5,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "pnpm -r exec npx commit-and-tag-version",
+    "publish-packages": "pnpm -r publish --access public"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.28.0"
+  "packageManager": "pnpm@10.28.0",
+  "devDependencies": {
+    "commit-and-tag-version": "^12.6.1"
+  }
 }
