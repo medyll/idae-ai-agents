@@ -1,6 +1,6 @@
 {
   "name": "@medyll/idae-agent-full",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Agent idae full role, executable via npx.",
   "main": "index.js",
   "type": "module",
