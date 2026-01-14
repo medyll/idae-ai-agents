@@ -30,8 +30,8 @@ jobs:
       - name: Install changesets
         run: pnpm add -D @changesets/cli
 
-      - name: Set npm auth token
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN_2026 }}" > ~/.npmrc
+      #- name: Set npm auth token
+      #  run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN_2026 }}" > ~/.npmrc
 
       - name: Version and Publish with Changesets
         env:
