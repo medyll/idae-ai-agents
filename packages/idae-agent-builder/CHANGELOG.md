@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.2.1](https://github.com/medyll/idae-ai-agents/compare/v1.1.3...v1.2.1) (2026-01-14)
+
+## 1.2.0 (2026-01-14)
+
+
+### Features
+
+* update README and package.json files, add default content module for package scaffolding ([08542b5](https://github.com/medyll/idae-ai-agents/commit/08542b520d40a5e84740c404adcfb3b5965098b8))
+
 ## [1.1.1](https://github.com/medyll/idae-ai-agents/compare/v1.1.2...v1.1.1) (2026-01-14)
 
 ## 1.1.0 (2026-01-14)
