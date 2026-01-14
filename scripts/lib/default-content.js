@@ -17,6 +17,11 @@ export const DEFAULT_CONTENT = {
     author: AUTHOR_NAME,
     scope: SCOPE,
     description: '',
+    scripts: {
+      test: 'echo "Error: no test specified" && exit 1',
+      release: 'npx commit-and-tag-version',
+      publish: 'npm publish --access public'
+    },
   }, null, 2) + '\n',
   'CHANGELOG.md': (pkg) => `# Changelog for ${pkg}\n\n- Initial release\n`,
   'pnpm-lock.yaml': () => '',
