@@ -1,0 +1,8 @@
+{
+  "name": "@idae-ai-agents/idae-agent-builder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "ISC",
+  "description": ""
+}

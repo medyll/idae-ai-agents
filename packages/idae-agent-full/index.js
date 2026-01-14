@@ -6,8 +6,8 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Forward all arguments to the make_agents.js script
-const scriptPath = path.join(__dirname, '..', '..', 'scripts', 'make_agents.js');
+// Forward all arguments to the build_agent.js script
+const scriptPath = path.join(__dirname, '..', '..', 'scripts', 'build_agent.js');
 let args = process.argv.slice(2);
 
 // Check if --name is already present

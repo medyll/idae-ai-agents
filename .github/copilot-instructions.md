@@ -4,7 +4,7 @@
 ## Project Overview
 - **Monorepo** for multi-role AI agents (PM, Architect, Dev, Tester, Doc) with full GitHub integration.
 - Main agent logic: `packages/idae-agent-full` (see `src/idae-agent-full.md`).
-- Agents are executed via `npx idae-agent-full` or CLI, which calls `scripts/make_agents.js` to generate/copy agent files into `.github/` or update `.github/copilot-instructions.md`.
+- Agents are executed via `npx idae-agent-full` or CLI, which calls `scripts/build_agent.js` to generate/copy agent files into `.github/` or update `.github/copilot-instructions.md`.
 
 ## Architecture & Patterns
 - **Dynamic Role System**: Agents switch between roles (`[[PM]]`, `[[ARCHITECT]]`, `[[DEV]]`, `[[TESTER]]`, `[[DOC]]`) per request. Each response starts with the current role in brackets.
@@ -16,7 +16,7 @@
 - **Install dependencies**: `pnpm install`
 - **Release**: `pnpm -r exec npx commit-and-tag-version`
 - **Publish**: `pnpm -r publish --access public`
-- **Agent Generation**: `npx idae-agent-full` or `node packages/idae-agent-full/index.js` (calls `scripts/make_agents.js`)
+- **Agent Generation**: `npx idae-agent-full` or `node packages/idae-agent-full/index.js` (calls `scripts/build_agent.js`)
 - **CI/CD**: Automated via `.github/workflows/publish.yml` on push to `main`
 
 ## Project-Specific Conventions
@@ -32,10 +32,10 @@
 - **Internal**: Agents communicate via file system and markdown documentation. All code/data flows are traceable via `.md` logs
 
 ## Examples & Key Files
-- To add a new agent: create a new folder in `packages/`, add a `src/` with `.md` instructions, and update `make_agents.js` logic if needed
+- To add a new agent: create a new folder in `packages/`, add a `src/` with `.md` instructions, and update `build_agent.js` logic if needed
 - To update instructions: edit `src/idae-agent-full.md` and re-run agent generation
-- See `scripts/make_agents.js` for agent file generation logic
+- See `scripts/build_agent.js` for agent file generation logic
 - See `.github/workflows/publish.yml` for CI/CD pipeline
 
 ---
-For more, see `packages/idae-agent-full/src/idae-agent-full.md`, `scripts/make_agents.js`, and `.github/workflows/publish.yml`.
+For more, see `packages/idae-agent-full/src/idae-agent-full.md`, `scripts/build_agent.js`, and `.github/workflows/publish.yml`.

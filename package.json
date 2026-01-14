@@ -7,7 +7,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "pnpm -r exec npx commit-and-tag-version",
-    "publish-packages": "pnpm -r publish --access public"
+    "publish-packages": "pnpm -r publish --access public",
+    "check-monorepo": "node scripts/check-monorepo.js",
+    "check-monorepo:fix": "node scripts/check-monorepo.js --fix",
+    "create-package": "node scripts/create-package.js"
   },
   "keywords": [],
   "author": "",

@@ -7,8 +7,31 @@ on:
   workflow_dispatch:
 
 jobs:
+  check-monorepo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.28.0
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Vérification solidité monorepo
+        run: pnpm check-monorepo
+
   release:
     runs-on: ubuntu-latest
+    needs: check-monorepo
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

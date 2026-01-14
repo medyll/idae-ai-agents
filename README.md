@@ -1,4 +1,3 @@
-
 # idae-ai-agents Monorepo
 
 This monorepo hosts installable AI agent packages, distributed via npm and runnable with `npx`.
@@ -28,20 +27,23 @@ npx @medyll/idae-agent-full
 npx @medyll/idae-agent-full
 ```
 
+## Créer un nouveau package
+
+Pour générer un nouveau package dans le monorepo (structure complète, dossier src, etc.) :
+
+```sh
+pnpm create-package <nom-du-package>
+# ou
+npm run create-package -- <nom-du-package>
+```
+
+Cela crée automatiquement le dossier dans `packages/` avec tous les fichiers nécessaires.
+
 ## Monorepo Structure
 - `packages/idae-agent-full/` : Main agent package (`@medyll/idae-agent-full`)
 - `scripts/` : Utility scripts (e.g., agent generation)
 - `.github/` : GitHub integration files (workflows, instructions, etc.)
 
-## Publishing
-- **Release** :
-  ```sh
-  pnpm -r exec npx commit-and-tag-version
-  ```
-- **Publish** :
-  ```sh
-  pnpm -r publish --access public
-  ```
 
 ## Conventions
 - All major actions must be documented
@@ -49,7 +51,7 @@ npx @medyll/idae-agent-full
 
 ## More info
 - See `packages/idae-agent-full/src/idae-agent-full.md` for agent logic
-- See `scripts/make_agents.js` for agent file generation
+- See `scripts/build_agent.js` for agent file generation
 - See `.github/workflows/publish.yml` for the CI/CD pipeline
 
 ---
