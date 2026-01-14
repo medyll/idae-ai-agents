@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.2.3](https://github.com/medyll/idae-ai-agents/compare/v1.1.4...v1.2.3) (2026-01-14)
+
 ## 1.2.2 (2026-01-14)
 
 ## [1.2.1](https://github.com/medyll/idae-ai-agents/compare/v1.1.3...v1.2.1) (2026-01-14)
