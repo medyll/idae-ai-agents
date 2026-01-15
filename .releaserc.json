@@ -49,5 +49,11 @@
         "message": "chore(release): ${nextRelease.name}@${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ]
+    ,[
+      "@semantic-release/exec",
+      {
+        "publishCmd": "node scripts/update-readme-version.js"
+      }
+    ]
   ]
 }
