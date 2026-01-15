@@ -12,17 +12,22 @@ let args = process.argv.slice(2);
 
 // Check if --name is already present
 const hasNameArg = args.some((arg, i) => arg === '--name' && args[i+1]);
-if (!hasNameArg) {
-	// Read package.json to get the default name
-	const pkg = JSON.parse(
-		require('fs').readFileSync(path.join(__dirname, 'package.json'), 'utf8')
-	);
-	let agentName = pkg.name;
-	if (agentName.startsWith('@')) {
-		agentName = agentName.split('/')[1];
+async function main() {
+	if (!hasNameArg) {
+		// Read package.json to get the default name
+		const fs = await import('fs/promises');
+		const pkgRaw = await fs.readFile(path.join(__dirname, 'package.json'), 'utf8');
+		const pkg = JSON.parse(pkgRaw);
+		let agentName = pkg.name;
+		if (agentName.startsWith('@')) {
+			agentName = agentName.split('/')[1];
+		}
+		args = ['--name', agentName, ...args];
 	}
-	args = ['--name', agentName, ...args];
+
+	const child = spawn('node', [scriptPath, ...args], { stdio: 'inherit' });
+	child.on('exit', code => process.exit(code));
 }
 
-const child = spawn('node', [scriptPath, ...args], { stdio: 'inherit' });
-child.on('exit', code => process.exit(code));
+main();
+
