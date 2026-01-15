@@ -1,6 +1,6 @@
 # @medyll/idae-agent-full
 
-This package provides an installable, multi-role AI agent for general development workflows, distributed via npm and runnable with `npx`. ok.
+This package provides an installable, multi-role AI agent for general development workflows, distributed via npm and runnable with `npx`.
 
 ## Features
 - Multi-role agent for project management, architecture, development, testing, and documentation
