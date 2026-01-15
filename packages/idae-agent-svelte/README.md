@@ -1,6 +1,6 @@
 # @medyll/idae-agent-svelte
 
-This package provides an installable AI agent for Svelte projects, distributed via npm and runnable with `npx`. ok.
+This package provides an installable AI agent for Svelte projects, distributed via npm and runnable with `npx`.
 
 ## Features
 - Designed for Svelte project workflows
