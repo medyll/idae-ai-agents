@@ -9,7 +9,7 @@
   },
   "scope": "@medyll",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+     "test": "jest --runInBand --detectOpenHandles --passWithNoTests test/",
     "release": "npx semantic-release",
     "publish": "npm publish --access public"
   },
@@ -25,5 +25,9 @@
   ],
   "dependencies": {
     "husky": "^9.1.7"
+  },
+  "devDependencies": {
+    "babel-jest": "29.7.0",
+    "jest": "^29.7.0"
   }
 }

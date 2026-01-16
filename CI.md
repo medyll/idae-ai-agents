@@ -36,14 +36,34 @@ The main CI workflow is defined in `.github/workflows/publish.yml` and is trigge
      - Publish updated packages to npm (if changes are detected).
      - Push changelogs and version bumps back to the repository.
 
+
 ## Tooling & Configuration
 
 - **multi-semantic-release**: Handles multi-package semantic versioning and changelog generation.
 - **semantic-release**: Automates versioning, changelog, and npm publishing based on commit history.
 - **commitlint**: Enforces Conventional Commits for all commit messages.
 - **husky**: Manages git hooks, especially for commit message validation.
-- **check-monorepo.js**: Custom script to enforce package structure and metadata integrity.
+- **check-monorepo.js**: Custom script to enforce package structure and metadata integrity. This script also checks for required CI/monorepo dependencies and will automatically install any missing ones using `pnpm install` and `pnpm install --workspace-root` if needed.
 - **pnpm**: Fast, disk-efficient package manager for monorepos.
+
+### Required CI/Monorepo Dependencies
+
+The following dependencies are required at the root for CI and monorepo operations (auto-checked/installed by `check-monorepo.js`):
+
+```
+@changesets/cli
+@semantic-release/commit-analyzer
+@semantic-release/git
+@semantic-release/github
+@semantic-release/npm
+@semantic-release/release-notes-generator
+@semantic-release/changelog
+multi-semantic-release
+semantic-release
+husky
+conventional-changelog-conventionalcommits
+@semantic-release/exec
+```
 
 ## Custom Scripts
 
