@@ -1,5 +1,7 @@
 {
-  "branches": ["main"],
+  "branches": [
+    "main"
+  ],
   "tagFormat": "v${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
@@ -9,23 +11,54 @@
         "preset": "conventionalcommits",
         "presetConfig": {
           "types": [
-            { "type": "feat", "section": "🚀 Features" },
-            { "type": "fix", "section": "🐞 Bug Fixes" },
-            { "type": "perf", "section": "⚡️ Performance Improvements" },
-            { "type": "revert", "section": "⏪ Reverts" },
+            {
+              "type": "feat",
+              "section": "🚀 Features"
+            },
+            {
+              "type": "fix",
+              "section": "🐞 Bug Fixes"
+            },
+            {
+              "type": "perf",
+              "section": "⚡️ Performance Improvements"
+            },
+            {
+              "type": "revert",
+              "section": "⏪ Reverts"
+            },
             {
               "type": "refactor",
               "section": "🔨 Code Refactoring",
               "hidden": false
             },
-            { "type": "docs", "section": "📚 Documentation", "hidden": false },
-            { "type": "chore", "section": "⚙️ Maintenance", "hidden": true }
+            {
+              "type": "docs",
+              "section": "📚 Documentation",
+              "hidden": false
+            },
+            {
+              "type": "chore",
+              "section": "⚙️ Maintenance",
+              "hidden": true
+            }
           ]
         },
         "releaseRules": [
-          { "type": "refactor", "release": "patch" },
-          { "type": "docs", "scope": "README", "release": "patch" },
-          { "type": "chore", "scope": "deps", "release": "patch" }
+          {
+            "type": "refactor",
+            "release": "patch"
+          },
+          {
+            "type": "docs",
+            "scope": "README",
+            "release": "patch"
+          },
+          {
+            "type": "chore",
+            "scope": "deps",
+            "release": "patch"
+          }
         ]
       }
     ],
@@ -45,17 +78,32 @@
     [
       "@semantic-release/changelog",
       {
+        "changelogFile": "packages/idae-agent-builder/CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "packages/idae-agent-full/CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
         "changelogFile": "packages/idae-agent-svelte/CHANGELOG.md"
       }
     ],
     [
       "@semantic-release/git",
       {
-        "assets": ["package.json", "CHANGELOG.md"],
+        "assets": [
+          "package.json",
+          "CHANGELOG.md"
+        ],
         "message": "chore(release): ${nextRelease.name}@${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
-    ]
-    ,[
+    ],
+    [
       "@semantic-release/exec",
       {
         "publishCmd": "node scripts/update-readme-version.js"

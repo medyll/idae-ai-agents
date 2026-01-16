@@ -6,10 +6,12 @@
  */
 
 
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { DEFAULT_CONTENT } from './lib/default-content.js';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -124,6 +126,43 @@ function main() {
     const pkgPath = path.join(PACKAGES_DIR, pkg);
     const ok = checkPackageMask(pkgPath, pkg, fix);
     if (!ok) allOk = false;
+  }
+  // Check and install missing dependencies if needed
+  let needInstall = false;
+  // List of required packages for monorepo/CI
+  const requiredDeps = [
+    '@changesets/cli',
+    '@semantic-release/commit-analyzer',
+    '@semantic-release/git',
+    '@semantic-release/github',
+    '@semantic-release/npm',
+    '@semantic-release/release-notes-generator',
+    'multi-semantic-release',
+    'semantic-release',
+    'husky',
+    'conventional-changelog-conventionalcommits',
+    '@semantic-release/exec'
+  ];
+  const rootPkgJsonPath = path.join(__dirname, '../package.json');
+  if (fs.existsSync(rootPkgJsonPath)) {
+    const rootPkg = JSON.parse(fs.readFileSync(rootPkgJsonPath, 'utf8'));
+    const allDeps = Object.assign({}, rootPkg.dependencies || {}, rootPkg.devDependencies || {});
+    for (const dep of requiredDeps) {
+      if (!allDeps[dep]) {
+        console.warn(`⚠️  Missing dependency: ${dep}`);
+        needInstall = true;
+      }
+    }
+    if (needInstall) {
+      try {
+        console.log('🛠️  Installing missing dependencies with pnpm install --workspace-root ...');
+        execSync('pnpm install --workspace-root', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+        console.log('✅ Dependencies installed.');
+      } catch (err) {
+        console.error('❌ Error while installing dependencies.');
+        process.exit(3);
+      }
+    }
   }
   if (fix) {
     updateReleasercChangelogs();
