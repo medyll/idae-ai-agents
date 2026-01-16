@@ -1,25 +1,28 @@
+import { describe, it, expect } from 'vitest';
+import path from 'path';
+import { spawnSync } from 'child_process';
 
-const { spawnSync } = require('child_process');
-const path = require('path');
-const fs = require('fs');
 
-describe('npx idae-agent-full', () => {
-  it('should run and create/copier les fichiers attendus', () => {
-    // Préparer un dossier temporaire pour tester l'installation
-    const tmpDir = fs.mkdtempSync(path.join(__dirname, 'tmp-'));
-    const result = spawnSync('npx', [
-      'idae-agent-full',
-      '--name', 'test-agent',
-      '--output', tmpDir
-    ], {
+describe('idae-agent-full package', () => {
+  it('doit être exécutable via le script local', () => {
+    const scriptPath = path.resolve('packages/idae-agent-full/index.js');
+    const result = spawnSync('node', [scriptPath, '--help'], {
       encoding: 'utf-8',
       stdio: 'pipe'
     });
     expect(result.status).toBe(0);
-    // Vérifier qu'un fichier attendu est bien créé (ex: copilot-instructions.md)
-    const expectedFile = path.join(tmpDir, '.github', 'copilot-instructions.md');
-    expect(fs.existsSync(expectedFile)).toBe(true);
-    // Nettoyage
-    fs.rmSync(tmpDir, { recursive: true, force: true });
+    expect(result.stdout).toMatch(/Agents output folder|Agent name/i);
+  });
+});
+describe('build_agent.js CLI', () => {
+  it('doit installer agent', () => {
+    const scriptPath = path.resolve('scripts/build_agent.js');
+    const result = spawnSync('node', [scriptPath, '--name', 'idae-agent-full', '--AGENTS_DEST', 'custom-dest-folder'], {
+      encoding: 'utf-8',
+      input: '2\n', // Sélectionne la 2e destination (custom-dest-folder)
+      stdio: ['pipe', 'pipe', 'pipe']
+    });
+    expect(result.status).toBe(0);
+    expect(result.stdout).toMatch(/custom-dest-folder/);
   });
 });

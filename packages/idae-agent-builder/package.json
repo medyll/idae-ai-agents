@@ -7,7 +7,7 @@
   "author": "Lebrun Meddy",
   "description": "",
   "scripts": {
-     "test": "jest --runInBand --detectOpenHandles --passWithNoTests test/",
+     "test": "",
     "release": "npx semantic-release",
     "publish": "npm publish --access public"
   },

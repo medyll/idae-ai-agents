@@ -6,7 +6,8 @@
   "main": "index.js",
   "scope": "@medyll",
   "scripts": {
-    "test": "pnpm -r --parallel test",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "release": "npx multi-semantic-release",
     "publish-packages": "pnpm -r publish --access public",
     "check-monorepo": "node scripts/check-monorepo.js",
@@ -19,11 +20,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.28.0",
   "devDependencies": {
-      "jest": {
-        "transform": {
-          "^.+\\.js$": "babel-jest"
-        }
-      },
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
     "@changesets/cli": "^2.29.8",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
@@ -36,8 +34,7 @@
     "jest": "29.7.0",
     "multi-semantic-release": "^3.1.0",
     "semantic-release": "^25.0.2",
-    "@babel/preset-env": "^7.24.0",
-    "@babel/core": "^7.24.0"
+    "vitest": "^4.0.17"
   },
   "dependencies": {
     "@semantic-release/exec": "^7.1.0"
