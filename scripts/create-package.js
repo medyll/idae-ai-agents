@@ -2,7 +2,7 @@
 
 /**
  * Script to create a new package in the IDAE monorepo
- * Usage: node scripts/create-package.js <package-name>
+ * Usage: node scripts/export-package.js <package-name>
  */
 
 
@@ -23,7 +23,7 @@ import { execSync } from 'child_process';
 
 function createPackage(packageName) {
   if (!packageName) {
-    console.error('\x1b[31m[ERROR]\x1b[0m No package name provided.\n\nUsage: pnpm create-package <package-name>\nor\nnpm run create-package -- <package-name>');
+    console.error('\x1b[31m[ERROR]\x1b[0m No package name provided.\n\nUsage: pnpm export-package <package-name>\nor\nnpm run export-package -- <package-name>');
     process.exit(1);
   }
   const packagePath = path.join(PACKAGES_DIR, packageName);

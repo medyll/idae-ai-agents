@@ -22,9 +22,9 @@ pnpm install
 To generate a new package in the monorepo (with full structure and `src/` folder):
 
 ```sh
-pnpm create-package <package-name>
+pnpm export-package <package-name>
 # or
-npm run create-package -- <package-name>
+npm run export-package -- <package-name>
 ```
 
 This will automatically create the folder in `packages/` with all required files.

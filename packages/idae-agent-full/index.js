@@ -2,10 +2,13 @@
 import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { cwd } from 'process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// cwd is the package directory
+cwd();
 // Forward all arguments to the build_agent.js script
 const scriptPath = path.join(__dirname, '..', '..', 'scripts', 'build_agent.js');
 let args = process.argv.slice(2);

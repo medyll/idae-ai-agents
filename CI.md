@@ -70,7 +70,7 @@ conventional-changelog-conventionalcommits
 - `scripts/check-monorepo.js`: Valide que tous les packages ont les fichiers requis et un champ `files` correct dans `package.json`. Avec l'option `--fix`, il :
    - auto-corrige les packages non conformes
    - met à jour dynamiquement `.releaserc.json` pour générer un bloc `@semantic-release/changelog` pour chaque package contenant un `CHANGELOG.md` (multi-changelog natif pour le monorepo)
-- `scripts/create-package.js`: Scaffolds new packages with all required files and metadata.
+- `scripts/export-package.js`: Scaffolds new packages with all required files and metadata.
 - `scripts/update-readme-version.js`: Updates README files with the latest version after release (triggered by semantic-release exec plugin).
 
 ## Release Configuration
@@ -85,7 +85,7 @@ conventional-changelog-conventionalcommits
 
 - Always use Conventional Commits (enforced by commitlint/husky).
 - Never push directly to `main` without PR review and passing CI.
-- Use `pnpm create-package <name>` to add new packages, ensuring compliance.
+- Use `pnpm export-package <name>` to add new packages, ensuring compliance.
 - Run `node scripts/check-monorepo.js` before publishing to catch issues early.
 
 ## Troubleshooting

@@ -12,7 +12,7 @@
     "publish-packages": "pnpm -r publish --access public",
     "check-monorepo": "node scripts/check-monorepo.js",
     "check-monorepo:fix": "node scripts/check-monorepo.js --fix",
-    "create-package": "node scripts/create-package.js",
+    "export-package": "node scripts/export-package.js",
     "bump-version": "condition-circle bump"
   },
   "keywords": [],
