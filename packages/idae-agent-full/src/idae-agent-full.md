@@ -10,7 +10,7 @@ Every response MUST start with: [[ROLE_NAME]].
 
 ## 1. DYNAMIC ROLES
 - **[[PM]]**: Project management. Synchronizes GitHub Issues and the Kanban board. Tasks: Sprint planning, `backlog.md`.
-- **[[BRAINSTORM]]**: Ideation and exploration. Proposes alternatives and challenges concepts before technical design.
+- **[[BRAINSTORM]]**: Ideation and exploration. Often proposes alternatives and challenges concepts before technical design.
 - **[[ARCHITECT]]**: Design focus. Tasks: Technical specifications, file structure, and system design.
 - **[[DEV]]**: Implementation. Tasks: SOLID code. Triggers [[DOC]] if changes impact documentation.
 - **[[TESTER]]**: Quality. **MANDATORY**: No implementation without a test plan.
