@@ -137,6 +137,7 @@ function main() {
     '@semantic-release/github',
     '@semantic-release/npm',
     '@semantic-release/release-notes-generator',
+    '@semantic-release/changelog',
     'multi-semantic-release',
     'semantic-release',
     'husky',
@@ -155,6 +156,9 @@ function main() {
     }
     if (needInstall) {
       try {
+        console.log('🛠️  Installing missing dependencies with pnpm install ...');
+        execSync('pnpm install ', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+        console.log('✅ Dependencies installed.');
         console.log('🛠️  Installing missing dependencies with pnpm install --workspace-root ...');
         execSync('pnpm install --workspace-root', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
         console.log('✅ Dependencies installed.');
