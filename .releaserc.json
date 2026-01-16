@@ -43,6 +43,12 @@
       }
     ],
     [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "packages/idae-agent-svelte/CHANGELOG.md"
+      }
+    ],
+    [
       "@semantic-release/git",
       {
         "assets": ["package.json", "CHANGELOG.md"],
