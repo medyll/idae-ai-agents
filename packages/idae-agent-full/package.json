@@ -16,5 +16,11 @@
   "keywords": [],
   "author": "Lebrun Meddy",
   "license": "ISC",
-  "packageManager": "pnpm@10.28.0"
+  "packageManager": "pnpm@10.28.0",
+  "files": [
+    "index.js",
+    "package.json",
+    "README.md",
+    "../../scripts/build_agent.js"
+  ]
 }

@@ -17,6 +17,11 @@ export const DEFAULT_CONTENT = {
     author: AUTHOR_NAME,
     scope: SCOPE,
     description: '',
+    files: [
+      'index.js',
+      'package.json',
+      'README.md'
+    ],
     scripts: {
       test: 'echo "Error: no test specified" && exit 1',
       release: 'npx commit-and-tag-version',

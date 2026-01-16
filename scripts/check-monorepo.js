@@ -16,6 +16,11 @@ const __dirname = path.dirname(__filename);
 
 const PACKAGES_DIR = path.join(__dirname, '../packages');
 const REQUIRED_FILES = ['package.json', 'index.js', 'README.md'];
+const REQUIRED_FILES_FIELD = [
+  'index.js',
+  'package.json',
+  'README.md'
+];
 
 function checkPackageMask(packagePath, packageName, fix = false) {
   let ok = true;
@@ -27,6 +32,40 @@ function checkPackageMask(packagePath, packageName, fix = false) {
       if (fix) {
         fs.writeFileSync(filePath, DEFAULT_CONTENT[file](packageName));
         console.log(`🛠️  ${packageName}: ${file} generated.`);
+      }
+    }
+  }
+  // Vérification du champ "files" dans package.json
+  const pkgJsonPath = path.join(packagePath, 'package.json');
+  if (fs.existsSync(pkgJsonPath)) {
+    let pkgJson;
+    try {
+      pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+    } catch (e) {
+      console.error(`❌ ${packageName}: package.json is invalid JSON.`);
+      ok = false;
+      return ok;
+    }
+    if (!Array.isArray(pkgJson.files)) {
+      console.error(`❌ ${packageName}: missing or invalid 'files' field in package.json.`);
+      ok = false;
+      if (fix) {
+        pkgJson.files = [...REQUIRED_FILES_FIELD];
+        fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2) + '\n');
+        console.log(`🛠️  ${packageName}: 'files' field added to package.json.`);
+      }
+    } else {
+      // Vérifie que tous les fichiers requis sont listés
+      for (const f of REQUIRED_FILES_FIELD) {
+        if (!pkgJson.files.includes(f)) {
+          console.error(`❌ ${packageName}: 'files' field missing '${f}' in package.json.`);
+          ok = false;
+          if (fix) {
+            pkgJson.files.push(f);
+            fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2) + '\n');
+            console.log(`🛠️  ${packageName}: '${f}' added to 'files' in package.json.`);
+          }
+        }
       }
     }
   }

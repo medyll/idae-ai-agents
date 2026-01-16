@@ -12,5 +12,10 @@
     "publish": "npm publish --access public"
   },
   "keywords": [],
-  "packageManager": "pnpm@10.28.0"
+  "packageManager": "pnpm@10.28.0",
+  "files": [
+    "index.js",
+    "package.json",
+    "README.md"
+  ]
 }
