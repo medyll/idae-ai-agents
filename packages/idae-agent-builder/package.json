@@ -17,5 +17,8 @@
     "index.js",
     "package.json",
     "README.md"
-  ]
+  ],
+  "dependencies": {
+    "husky": "^9.1.7"
+  }
 }

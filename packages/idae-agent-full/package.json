@@ -22,5 +22,8 @@
     "package.json",
     "README.md",
     "../../scripts/build_agent.js"
-  ]
+  ],
+  "dependencies": {
+    "husky": "^9.1.7"
+  }
 }

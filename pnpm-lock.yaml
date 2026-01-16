@@ -43,11 +43,23 @@ importers:
         specifier: ^25.0.2
         version: 25.0.2
 
-  packages/idae-agent-builder: {}
+  packages/idae-agent-builder:
+    dependencies:
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
 
-  packages/idae-agent-full: {}
+  packages/idae-agent-full:
+    dependencies:
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
 
-  packages/idae-agent-svelte: {}
+  packages/idae-agent-svelte:
+    dependencies:
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
 
 packages:
 
