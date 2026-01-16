@@ -10,12 +10,18 @@ This package provides an installable AI agent for Svelte projects, distributed v
 ## Getting Started
 
 ### Install dependencies
-```sh
+npm install
+```
+
+## Note
+
+Cette ligne a été ajoutée pour forcer un bump de version (fix: update doc).
 pnpm install
 ```
 
 ### Generate or update the agent
-```sh
+npx @medyll/idae-agent-svelte
+```
 npx @medyll/idae-agent-svelte
 ```
 
