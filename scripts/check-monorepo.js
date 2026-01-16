@@ -72,6 +72,43 @@ function checkPackageMask(packagePath, packageName, fix = false) {
   return ok || fix;
 }
 
+
+function getChangelogBlocks() {
+  const packages = fs.readdirSync(PACKAGES_DIR).filter((f) => {
+    const fullPath = path.join(PACKAGES_DIR, f);
+    return fs.statSync(fullPath).isDirectory();
+  });
+  const blocks = [];
+  for (const pkg of packages) {
+    const changelogPath = path.join(PACKAGES_DIR, pkg, 'CHANGELOG.md');
+    if (fs.existsSync(changelogPath)) {
+      blocks.push([
+        '@semantic-release/changelog',
+        { changelogFile: `packages/${pkg}/CHANGELOG.md` }
+      ]);
+    }
+  }
+  return blocks;
+}
+
+function updateReleasercChangelogs() {
+  const RELEASERC_PATH = path.join(__dirname, '../.releaserc.json');
+  const rc = JSON.parse(fs.readFileSync(RELEASERC_PATH, 'utf8'));
+  // Remove all existing changelog plugin blocks
+  rc.plugins = rc.plugins.filter(
+    (p) => !(Array.isArray(p) && p[0] === '@semantic-release/changelog')
+  );
+  // Insert new changelog blocks just before git/exec plugins
+  const changelogBlocks = getChangelogBlocks();
+  let insertIdx = rc.plugins.findIndex(
+    (p) => Array.isArray(p) && (p[0] === '@semantic-release/git' || p[0] === '@semantic-release/exec')
+  );
+  if (insertIdx === -1) insertIdx = rc.plugins.length;
+  rc.plugins.splice(insertIdx, 0, ...changelogBlocks);
+  fs.writeFileSync(RELEASERC_PATH, JSON.stringify(rc, null, 2) + '\n');
+  console.log(`✅ .releaserc.json updated with ${changelogBlocks.length} changelog blocks.`);
+}
+
 function main() {
   const fix = process.argv.includes('--fix');
   if (!fs.existsSync(PACKAGES_DIR)) {
@@ -87,6 +124,9 @@ function main() {
     const pkgPath = path.join(PACKAGES_DIR, pkg);
     const ok = checkPackageMask(pkgPath, pkg, fix);
     if (!ok) allOk = false;
+  }
+  if (fix) {
+    updateReleasercChangelogs();
   }
   if (allOk) {
     console.log('✅ All packages match the mask.');
