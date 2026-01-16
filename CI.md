@@ -47,16 +47,19 @@ The main CI workflow is defined in `.github/workflows/publish.yml` and is trigge
 
 ## Custom Scripts
 
-- `scripts/check-monorepo.js`: Validates that all packages have required files and a correct `files` field in `package.json`. Can auto-fix with `--fix`.
+- `scripts/check-monorepo.js`: Valide que tous les packages ont les fichiers requis et un champ `files` correct dans `package.json`. Avec l'option `--fix`, il :
+   - auto-corrige les packages non conformes
+   - met à jour dynamiquement `.releaserc.json` pour générer un bloc `@semantic-release/changelog` pour chaque package contenant un `CHANGELOG.md` (multi-changelog natif pour le monorepo)
 - `scripts/create-package.js`: Scaffolds new packages with all required files and metadata.
 - `scripts/update-readme-version.js`: Updates README files with the latest version after release (triggered by semantic-release exec plugin).
 
 ## Release Configuration
 
-- `.releaserc.json` defines semantic-release plugins, commit type mapping, and changelog formatting.
-- Only commits on the `main` branch trigger releases.
-- Changelogs are generated per package and pushed to the repository.
-- Only packages with relevant changes are published.
+- `.releaserc.json` définit les plugins semantic-release, le mapping des types de commit, et le format des changelogs.
+- Les blocs `@semantic-release/changelog` sont générés automatiquement pour chaque package via `check-monorepo.js --fix`.
+- Seuls les commits sur la branche `main` déclenchent une release.
+- Un changelog est généré et mis à jour pour chaque package concerné, puis poussé dans le repo.
+- Seuls les packages modifiés sont publiés sur npm.
 
 ## Best Practices
 
