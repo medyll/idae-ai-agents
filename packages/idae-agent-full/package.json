@@ -10,7 +10,7 @@
   "scope": "@medyll",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "npx commit-and-tag-version",
+    "release": "npx semantic-release",
     "publish": "npm publish --access public"
   },
   "keywords": [],
