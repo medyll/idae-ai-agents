@@ -1,0 +1,27 @@
+{
+  "name": "@medyll/idae-agent-builder",
+  "version": "1.4.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "ISC",
+  "author": "Lebrun Meddy",
+  "description": "",
+  "scripts": {
+    "test": "",
+    "release": "npx semantic-release",
+    "publish": "npm publish --access public"
+  },
+  "keywords": [],
+  "packageManager": "pnpm@10.28.0",
+  "files": [
+    "index.js",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "husky": "^9.1.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
