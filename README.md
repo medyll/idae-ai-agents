@@ -2,9 +2,11 @@
 
 > Manage, validate and distribute the **complete configuration of an AI agent** as versioned Markdown packages — skills, custom instructions, agents, MCP servers and hooks.
 
+
 ```bash
 # No install needed
-pnpm dlx @medyll/ia-agents ls
+pnpm dlx @medyll/ia-agents ls-skills         # Liste toutes les skills
+pnpm dlx @medyll/ia-agents ls-instructions   # Liste toutes les instructions
 pnpm dlx @medyll/ia-agents add-skill react-expert
 pnpm dlx @medyll/ia-agents add-agent fullstack-dev    # cascades skills + mcp + hooks
 ```
@@ -17,7 +19,9 @@ pnpm dlx @medyll/ia-agents add-agent fullstack-dev    # cascades skills + mcp + 
 
 | Command | Description |
 |---|---|
-| `ls` | List all entries. Filter with `--type skill\|instruction\|agent\|mcp\|hook` |
+| `ls-skills` | List all installed skills |
+| `ls-instructions` | List all installed instructions |
+| `ls` | (deprecated) List all entries. Filter with `--type skill\|instruction\|agent\|mcp\|hook` |
 | `add <id>` | Generic install — auto-detects type and destination |
 | `rm <id>` | Remove an installed entry |
 | `update` | Sync all installed entries to latest registry versions |

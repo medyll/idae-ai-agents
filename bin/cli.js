@@ -47,12 +47,17 @@ program
 //  GENERIC commands
 // ─────────────────────────────────────────────────────────────────────────────
 
+
+// Deprecated 'ls' command — print warning and redirect
 program
   .command('ls')
-  .description('List all entries in the registry')
+  .description('(deprecated) Use ls-skills, ls-instructions, ls-agents, ls-mcp, or ls-hooks instead')
   .option('--json',           'Output as JSON')
   .option('--type <type>',    'Filter: skill | instruction | agent | mcp | hook')
-  .action((o) => listEntries({ json: o.json, type: o.type }));
+  .action((o) => {
+    console.warn('\u001b[33m[DEPRECATED]\u001b[0m The "ls" command is deprecated. Use "ls-skills", "ls-instructions", "ls-agents", "ls-mcp" ou "ls-hooks" à la place.');
+    listEntries({ json: o.json, type: o.type });
+  });
 
 program
   .command('add <id>')
